@@ -57,16 +57,22 @@ namespace ToDo
                 string optionSelected = Console.ReadLine();
                 // Remove one position
                 int indexToRemove = Convert.ToInt32(optionSelected) - 1;
-                if (indexToRemove > -1 && TaskList.Count > 0)
+                if (indexToRemove > -1 && TaskList.Count > 0 && indexToRemove < TaskList.Count)
                 {
                     string task = TaskList[indexToRemove];
                     TaskList.RemoveAt(indexToRemove);
                     Console.WriteLine("----------------------------------------");
                     Console.WriteLine("Tarea " + task + " eliminada");
                 }
+                else
+                {
+                    Console.WriteLine("No se encontró la tarea a eliminar");
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine("Ha ocurrido un error al intentar eliminar la tarea");
+                // mensaje de error (ex.Message) en log para revisión
             }
         }
 
@@ -76,11 +82,22 @@ namespace ToDo
             {
                 Console.WriteLine("Ingrese el nombre de la tarea: ");
                 string task = Console.ReadLine();
-                TaskList.Add(task);
-                Console.WriteLine("Tarea registrada");
+
+                if(!string.IsNullOrEmpty(task))
+                {
+                    TaskList.Add(task);
+                    Console.WriteLine("Tarea registrada");
+                }
+                else
+                {
+                    Console.WriteLine("No se puede agregar una tarea vacía");
+                }
+
             }
             catch (Exception)
             {
+                Console.WriteLine("Ha ocurrido un error al intentar agregar la tarea");
+                // mensaje de error (ex.Message) en log para revisión
             }
         }
 
