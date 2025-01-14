@@ -5,11 +5,11 @@ namespace ToDo
 {
   internal class Program
   {
-    public static List<string> TaskList { get; set; }
+    public static List<string> TaskList { get; set; } = new List<string>();
 
     static void Main(string[] args)
     {
-      TaskList = new List<string>();
+      // TaskList = new List<string>(); // se puede inicializar en la declaración de la propiedad
       int menuSelected = 0;
       do
       {
@@ -62,7 +62,7 @@ namespace ToDo
           string task = TaskList[indexToRemove];
           TaskList.RemoveAt(indexToRemove);
           Console.WriteLine("----------------------------------------");
-          Console.WriteLine("Tarea " + task + " eliminada");
+          Console.WriteLine($"Tarea {task} eliminada");
         }
         else
         {
@@ -103,13 +103,14 @@ namespace ToDo
 
     public static void ShowMenuTaskList()
     {
-      if (TaskList == null || TaskList.Count == 0)
+      if (TaskList?.Count > 0)
       {
-        Console.WriteLine("No hay tareas por realizar");
+        ShowTaskList();
       }
       else
       {
-        ShowTaskList();
+        Console.WriteLine("----------------------------------------");
+        Console.WriteLine("No hay tareas por realizar");
       }
     }
 
@@ -120,7 +121,7 @@ namespace ToDo
       var indexTask = 0;
       // cuando se usa indexTask++ se incrementa después de que se usa
       // cuando se usa ++indexTask se incrementa antes de que se use
-      TaskList.ForEach(task => Console.WriteLine((++indexTask) + ". " + task));
+      TaskList.ForEach(task => Console.WriteLine($"{++indexTask} . {task}"));
 
       Console.WriteLine("----------------------------------------");
     }
