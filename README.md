@@ -42,3 +42,6 @@ Proyecto base para completar el curso de buenas prácticas y código limpio en C
 
 - [x] Naming
 - [x] Code Smells
+- [x] Principio DRY
+- [x] Principio KISS
+- [x] Try Catch
